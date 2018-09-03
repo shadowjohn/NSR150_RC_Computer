@@ -1,7 +1,7 @@
 /*
  * NSR-150 RC電腦 V0.1
  * Release Date: 2018-09-04
- * * By 羽山秋人
+ * By 羽山秋人 (http://3wa.tw)
  * GitHub: https://github.com/shadowjohn/NSR150_RC_Computer
  * 
  * 接腳參考
