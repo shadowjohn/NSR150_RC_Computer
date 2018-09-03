@@ -30,6 +30,9 @@ D3 接腳用來抓取引擎訊號，引擎訊號透過 74LS14 過濾雜訊。<br>
 電路圖：<br>
   <img src="Circuit_diagram/V0.1.jpg"><br>
 <br>
+參考影片：<br>
+  <video src="Video/20180904_001626.mp4"></video>
+<br>
 詳細心得資料：<br>
   NSR-RC伺服馬達研究-第一章：http://3wa.tw/blog/blog.php?id=1457<br>
   NSR-RC伺服馬達研究-第二章：http://3wa.tw/blog/blog.php?id=1687<br>
