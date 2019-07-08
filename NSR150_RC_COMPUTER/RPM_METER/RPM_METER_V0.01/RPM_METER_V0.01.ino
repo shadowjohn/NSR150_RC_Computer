@@ -1,6 +1,7 @@
 /************************************
   RPM Tachometer
   Author:3WA 羽山秋人(http://3wa.tw)
+  Release Date: 2019-07-06
   Version：0.01
 *************************************/
 #include <Servo.h>

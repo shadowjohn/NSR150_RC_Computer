@@ -2,6 +2,7 @@
   RPM Tachometer
   Author:3WA 羽山秋人(http://3wa.tw)
   Request: IC 74595 x 2
+  Release Date: 2019-07-09
   Version：0.02
 *************************************/
 #include <Servo.h>
