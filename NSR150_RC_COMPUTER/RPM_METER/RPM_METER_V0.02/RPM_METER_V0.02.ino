@@ -26,7 +26,7 @@ int delay1000 = 1000;
 int delay100 = 100;
 int delay300 = 300;
 //用來偵測 D3 腳抓引擎轉速的部分
- int firePin = D3; //RPM 透過 7414 載入，13腳來自引擎訊號，12腳接到 D0
+ int firePin = D3; //RPM 透過 7414 載入，13腳來自引擎訊號，12腳接到 D3
  int fireInt = 0;
 unsigned int pulsesPR = 1;
 unsigned long lastPT = 0;
@@ -150,6 +150,7 @@ void rpm_to_servo(){
 void loop() {
 
   //初始測試 LED 二次
+  //暗亮暗亮 低->高，高->低
   if (is_first_time)
   {    
     for (int i = 0; i < 2; i++)
