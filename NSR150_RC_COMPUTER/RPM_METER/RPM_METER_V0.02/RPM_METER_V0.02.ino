@@ -10,9 +10,11 @@ Servo myservo; // 建立Servo物件，控制伺服馬達
 // D1 活塞
 // D2 Data
 // D3 Singal Input
+// code 就是 燈號，低->高 ，共16顆 LED，0是暗，1是亮
 static String code = "0000000000000000";
 byte LED_A = 0;
 byte LED_B = 0;
+//取得的rpm不停的寫入 clean_rpms，0~9 陣列，排序後，取中間，減少判差
 int clean_rpms[] = { 0,0,0,0,0,0,0,0,0,0 };
 int rpm_step=0;
 char* led;
@@ -65,7 +67,8 @@ void fireIsr()
 }
 int get_rpm()
 {
-  //排序
+  //泡沫排序
+  //排序連續取得的轉速值，取中間值，減少誤差
   for(int i=0;i<9;i++)
   {
     for(int j=i+1;j<10;j++)  
@@ -78,11 +81,7 @@ int get_rpm()
       }
     }
   }
-  //int sum=0;
-  //for(int i=4;i<=8;i++)
-  //{
-  //  sum+=clean_rpms[i];
-  //}
+  //觀察中，不確定會不會因為CPU不夠快，導至高轉讀不到 
   if(rpm>=10000)
   {
     return clean_rpms[9];
@@ -94,14 +93,14 @@ int get_rpm()
 }
 void show_led()
 {
-  
   Serial.println("");
+  //將 code 的值，轉成 byte 再送到 74HC595
   LED_A=0;
   LED_B=0;
-  for (int led = 0; led < 8; led++) {
-    bitWrite(LED_A, led, (code[led]=='1')?LOW:HIGH);    
-    bitWrite(LED_B, led, (code[led+8]=='1')?LOW:HIGH);       
-    Serial.print(code[led]);
+  for (int i = 0; i < 8; i++) {
+    bitWrite(LED_A, i, (code[i]=='1')?LOW:HIGH);    
+    bitWrite(LED_B, i, (code[i+8]=='1')?LOW:HIGH);       
+    Serial.print(code[i]);
   }
   Serial.println("");
   Serial.println(LED_A);
@@ -119,7 +118,9 @@ void show_led()
 
 void rpm_to_led()
 {
- 
+  //將 rpm 轉成 led 顯示，每1000轉一個燈，如:
+  //1500rpm = 1500/1000 = 1.5 無條件進位 = 2 ，顯示 2 個燈
+  //低於1000rpm 1個燈
   int rpm = get_rpm();
   int i=0;
   for(i = 0 ; i < ceil(rpm / 1000.0 );i++)
@@ -133,6 +134,7 @@ void rpm_to_led()
   show_led(); 
 }
 void rpm_to_servo(){
+  //這是 rpm 轉 伺服馬達的，暫時用不到
   int r = 175-int(get_rpm()/100*1.2);
   Serial.print("r :");
   Serial.println(r);
@@ -145,7 +147,8 @@ void rpm_to_servo(){
 }
 
 void loop() {
-  
+
+  //初始測試 LED 二次
   if (is_first_time)
   {    
     for (int i = 0; i < 2; i++)
@@ -200,6 +203,9 @@ void loop() {
     show_led();
     delay(delaytime);
   }
+
+  //測試結束了
+  
   //開始工作
   //Serial.print(duringInt);
   //Serial.print(" ");  
