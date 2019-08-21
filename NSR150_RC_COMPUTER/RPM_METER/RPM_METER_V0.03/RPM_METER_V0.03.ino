@@ -15,7 +15,7 @@ Servo myservo; // 建立Servo物件，控制伺服馬達
 /************************* WiFi Access Point *********************************/
 
 #define WLAN_SSID       "3wa_hinet"
-#define WLAN_PASS       "0919566444"
+#define WLAN_PASS       "PASSWORD"
 
 /************************* Adafruit.io Setup *********************************/
 
