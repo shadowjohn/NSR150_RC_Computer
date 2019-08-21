@@ -22,7 +22,7 @@ Servo myservo; // 建立Servo物件，控制伺服馬達
 #define AIO_SERVER      "3wa.tw"
 #define AIO_SERVERPORT  1883                   // use 8883 for SSL
 #define AIO_USERNAME    "john"
-#define AIO_KEY         "123123123"
+#define AIO_KEY         "PASSWORD"
 // Create an ESP8266 WiFiClient class to connect to the MQTT server.
 WiFiClient client;
 // or... use WiFiFlientSecure for SSL
